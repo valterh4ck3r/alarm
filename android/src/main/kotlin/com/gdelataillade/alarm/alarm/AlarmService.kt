@@ -83,11 +83,7 @@ class AlarmService : Service() {
 
         // Starting foreground service safely
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                startForeground(id, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
-            } else {
-                startForeground(id, notification)
-            }
+            startForeground(id, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
         } catch (e: ForegroundServiceStartNotAllowedException) {
             Log.e("AlarmService", "Foreground service start not allowed", e)
             return START_NOT_STICKY // Return if cannot start foreground service
